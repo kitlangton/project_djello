@@ -1,8 +1,35 @@
 <md-content>
     <md-toolbar>
-        <h5>
-            {{ currentUser.email
+        <div class="md-toolbar-tools">
+            <h1>Djello</h1>
+            <md-menu>
+                <md-button aria-label="Open phone interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
+                    <span md-menu-origin>Boards</span>
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-click="showPrompt(event)">
+                            Create New Board
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item ng-repeat="board in boards">
+                        <md-button>
+                            {{board.name}}
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
 
-  netuhoteuh  <ui-view></ui-view>
+            <span flex></span>
+            <h5>
+                {{ currentUser.email }}
+            </h5>
+            <md-button>Log Out</md-button>
+        </div>
+    </md-toolbar>
+
+
+    <ui-view></ui-view>
 
 </md-content>

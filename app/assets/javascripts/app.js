@@ -1,4 +1,4 @@
-angular.module('djello', ['ui.router', 'restangular'])
+angular.module('djello', ['ngMaterial', 'Devise', 'ui.router', 'restangular'])
 
 .config(['RestangularProvider', function(RestangularProvider){
   RestangularProvider.setBaseUrl('/api/v1');
@@ -13,7 +13,8 @@ angular.module('djello', ['ui.router', 'restangular'])
       .state('boards', {
         url: '/boards',
         abstract: true,
-        template: '<div ui-view></div>'
+        controller: 'BoardsCtrl',
+        templateUrl: '/templates/boards.html'
       })
       .state('boards.index',{
         url: "",
@@ -25,8 +26,4 @@ angular.module('djello', ['ui.router', 'restangular'])
         templateUrl: "/templates/boards/show.html",
         controller: 'BoardsShowCtrl'
       });
-  }])
-
-.un(function($rootScope){
-  $rootScope.$on("$stateChangeError", console.log.bind(console));
-});
+  }]);
