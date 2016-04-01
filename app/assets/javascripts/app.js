@@ -14,7 +14,12 @@ angular.module('djello', ['ngMaterial', 'Devise', 'ui.router', 'restangular'])
         url: '/boards',
         abstract: true,
         controller: 'BoardsCtrl',
-        templateUrl: '/templates/boards.html'
+        templateUrl: '/templates/boards.html',
+        resolve: {
+          boards: ['Boards', function(Boards) {
+            return Boards.getList();
+          }]
+        }
       })
       .state('boards.index',{
         url: "",
@@ -24,6 +29,11 @@ angular.module('djello', ['ngMaterial', 'Devise', 'ui.router', 'restangular'])
       .state('boards.show', {
         url: "boards/:id",
         templateUrl: "/templates/boards/show.html",
-        controller: 'BoardsShowCtrl'
+        controller: 'BoardsShowCtrl',
+        resolve: {
+          board: ['Boards', '$stateParams', function(Boards, $stateParams) {
+            return Boards.one($stateParams.id).get();
+          }]
+        }
       });
   }]);

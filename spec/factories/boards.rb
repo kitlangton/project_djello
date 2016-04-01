@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :board do
     user
-    name "Board"
+    sequence(:name) { |n| "Board#{n}" }
   end
 end

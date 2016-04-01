@@ -1,32 +1,35 @@
 angular.module('djello')
-    .controller('BoardsCtrl', ['$scope', '$mdDialog', 'Auth', '$window', function($scope, $mdDialog, Auth, $window) {
+    .controller('BoardsCtrl', ['$scope', '$mdDialog', 'Auth', '$window', 'boards', function($scope, $mdDialog, Auth, $window, boards) {
+        $scope.boards = boards;
+
         var config = {
             headers: {
                 'X-HTTP-Method-Override': 'DELETE'
             }
         };
+
         Auth.currentUser().then(function(user) {
             console.log(user);
             $scope.currentUser = user;
         });
+
         $scope.openMenu = function($mdOpenMenu, ev) {
             originatorEv = ev;
             $mdOpenMenu(ev);
         };
-        $scope.boards = [{name: 'hi'}, {name: 'okay'}, {name: 'fine'}];
+
         $scope.showPrompt = function(ev) {
             var confirm = $mdDialog.prompt()
                     .title('New Board')
                     .textContent('Enter the name of your new board.')
-                    .placeholder('Projects')
+                    .placeholder('Board name')
                     .ariaLabel('Board name')
                     .targetEvent(ev)
                     .ok('Okay!')
                     .cancel('Cancel');
             $mdDialog.show(confirm).then(function(result) {
-                $scope.status = 'You decided to name your dog ' + result + '.';
+              $scope.boards.create({name: result, user_id: $scope.currentUser.id })
             }, function() {
-                $scope.status = 'You didn\'t name your dog.';
             });
         };
 
