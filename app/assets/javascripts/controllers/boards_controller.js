@@ -1,5 +1,10 @@
 angular.module('djello')
-    .controller('BoardsCtrl', ['$scope', '$mdDialog', 'Auth', function($scope, $mdDialog, Auth) {
+    .controller('BoardsCtrl', ['$scope', '$mdDialog', 'Auth', '$window', function($scope, $mdDialog, Auth, $window) {
+        var config = {
+            headers: {
+                'X-HTTP-Method-Override': 'DELETE'
+            }
+        };
         Auth.currentUser().then(function(user) {
             console.log(user);
             $scope.currentUser = user;
@@ -23,5 +28,13 @@ angular.module('djello')
             }, function() {
                 $scope.status = 'You didn\'t name your dog.';
             });
+        };
+
+        $scope.logout = function() {
+          Auth.logout(config).then(function(oldUser) {
+            $window.location.href = '/users/sign_in';
+          }, function(error) {
+            alert('It failed to log you out');
+          });
         };
     }]);
