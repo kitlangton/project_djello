@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :list do
-    name "MyString"
-    board nil
+    sequence(:name) { |n| "List##{n}" }
+    board
   end
 end

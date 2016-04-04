@@ -1,3 +1,56 @@
 // Place all the styles related to the Lists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.list-name {
+  padding: 7px;
+  font-size: 0.95em;
+  font-weight: bold;
+  color: #444;
+}
+
+.add-card {
+  width: 100%;
+  color: #888;
+  font-size: 0.9em;
+  padding: 7px;
+  &:hover {
+    background-color: rgba(0,0,0,0.1);
+    color: #444;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .card {
+    min-height: 50px;
+  }
+}
+
+.adding {
+  background-color: red;
+}
+
+.card {
+  background-color: white;
+  margin: 5px 7px;
+  margin-top: 0px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 8px 8px;
+  color: #444;
+  font-size: 0.88em;
+  transition: all 0.3s;
+}
+
+textarea {
+  outline: none;
+  border: none;
+  resize: none;
+  width: 230px;
+  color: #444;
+}
+
+.new-card {
+  .special-button {
+    margin: 7px 7px;
+  }
+}

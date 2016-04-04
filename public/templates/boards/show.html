@@ -4,33 +4,39 @@
     <md-button class='md-warn' ng-click="removeBoard(board)" ui-sref='boards.index'>Remove Board</md-button>
   </div>
 
-<div class="list">
+  <div class="lists">
+<div class="list" ng-repeat="list in lists">
 
-  <!-- <md-card>
-    <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Card with image</span>
-        <span class="md-subhead">Large</span>
-      </md-card-title-text>
-      <md-card-title-media>
-        <div class="md-media-lg card-media"></div>
-      </md-card-title-media>
-    </md-card-title>
-    <md-card-actions layout="row" layout-align="end center">
-      <md-button>Action 1</md-button>
-      <md-button>Action 2</md-button>
-    </md-card-actions>
-  </md-card> -->
+  <div class="list-name">
+    {{ list.name }}
+  </div>
+
+  <div class="card" ng-repeat="card in list.cards">{{card.body}}</div>
+
+  <div class="new-card" ng-show="list.addingCard">
+    <div class="card editable">
+      <textarea autofocus=true ng-model='list.newCardText'></textarea>
+    </div>
+    <div class="card-controls">
+      <button class="special-button" ng-click="createCard(list, list.newCardText)">Add</button>
+    </div>
+  </div>
+
+  <div class="add-card" ng-hide="list.addingCard" ng-mousedown="list.addingCard = !list.addingCard">
+    Add a card...
+  </div>
 
 </div>
 
-<div class="add-list" ng-click="toggled = !toggled" ng-class="toggled && 'toggled'">
+<div class="add-list" ng-mousedown="toggled = !toggled" ng-class="toggled && 'toggled'">
   <span class="add-list-text">
-      <input type="text" name="name" placeholder="Add a List...">
+      <input type="text" name="name" ng-mousedown="nothing($event)" placeholder="Add a List..." ng-model="newListName">
   </span>
   <div class="controls">
-    <button class="special-button" md-click="createList()">Save</button>
+    <button class="special-button" ng-click="createList()">Save</button>
   </div>
+</div>
+
 </div>
 
 </md-content>

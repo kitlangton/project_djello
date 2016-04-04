@@ -1,35 +1,33 @@
-<md-content>
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <md-button ui-sref='boards.index'>
-        <h1>Djello</h1>
-      </md-button>
-      <md-menu>
-        <md-button aria-label="Open phone interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
-          <span md-menu-origin>Boards</span>
-        </md-button>
-        <md-menu-content width="4">
-          <md-menu-item>
-            <md-button ng-click="showPrompt(event)">
-              Create New Board
-            </md-button>
-          </md-menu-item>
-          <md-menu-divider></md-menu-divider>
-          <md-menu-item ng-repeat="board in boards">
-              <md-button ui-sref="boards.show({id: board.id})">
-                {{board.name}}
-              </md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
+<md-toolbar>
+<div class="md-toolbar-tools">
+  <md-button ui-sref='boards.index'>
+  <h1>Djello</h1>
+  </md-button>
+  <md-menu>
+  <md-button aria-label="Open phone interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
+  <span md-menu-origin>Boards</span>
+  </md-button>
+  <md-menu-content width="4">
+  <md-menu-item>
+  <md-button ng-click="showPrompt(event)">
+  Create New Board
+  </md-button>
+  </md-menu-item>
+  <md-menu-divider></md-menu-divider>
+  <md-menu-item ng-repeat="board in boards">
+  <md-button ui-sref="boards.show({id: board.id})">
+  {{board.name}}
+  </md-button>
+  </md-menu-item>
+  </md-menu-content>
+  </md-menu>
 
-      <span flex></span>
-      <h5>
-        {{ currentUser.email }}
-      </h5>
-      <md-button ng-click="logout()">Log Out</md-button>
-    </div>
-  </md-toolbar>
+  <span flex></span>
+  <h5>
+    {{ currentUser.email }}
+  </h5>
+  <md-button ng-click="logout()">Log Out</md-button>
+</div>
+</md-toolbar>
 
-  <ui-view></ui-view>
-</md-content>
+<ui-view></ui-view>

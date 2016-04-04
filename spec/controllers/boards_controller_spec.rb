@@ -8,7 +8,6 @@ RSpec.describe BoardsController, type: :controller do
   let(:json) { JSON.parse(response.body) }
 
   describe 'GET index' do
-
     before(:each) do
       sign_in user
       board
@@ -16,7 +15,7 @@ RSpec.describe BoardsController, type: :controller do
 
     it 'returns status of OK' do
       get :index, format: :json
-      expect( response.status ).to eq 200
+      expect(response.status).to eq 200
     end
 
     it 'gets all of the boards' do
@@ -56,7 +55,7 @@ RSpec.describe BoardsController, type: :controller do
     end
 
     it 'returns errors for an invalid board' do
-      post :create , board: invalid_board_attributes
+      post :create, board: invalid_board_attributes
       expect(response.status).to eq 422
     end
   end
