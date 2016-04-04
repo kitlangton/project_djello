@@ -91,4 +91,16 @@ RSpec.describe BoardsController, type: :controller do
       expect(response.status).to eq 422
     end
   end
+
+  describe 'DELETE #destroy' do
+
+    before do
+      board
+      sign_in user
+    end
+
+    it 'removes a board' do
+      expect{delete :destroy, id: board.id}.to change { Board.count }.by -1
+    end
+  end
 end

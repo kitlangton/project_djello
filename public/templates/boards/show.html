@@ -1,6 +1,7 @@
 <md-content layout-padding class="board-body">
   <div class="board-name-header">
     {{ board.name }}
+    <md-button class='md-warn' ng-click="removeBoard(board)" ui-sref='boards.index'>Remove Board</md-button>
   </div>
 
 <div class="list">
@@ -25,10 +26,10 @@
 
 <div class="add-list" ng-click="toggled = !toggled" ng-class="toggled && 'toggled'">
   <span class="add-list-text">
-      <input type="text" name="name" value="Add a list...">
+      <input type="text" name="name" placeholder="Add a List...">
   </span>
   <div class="controls">
-    <button class="special-button">Save</button>
+    <button class="special-button" md-click="createList()">Save</button>
   </div>
 </div>
 

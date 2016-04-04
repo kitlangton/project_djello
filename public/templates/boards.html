@@ -1,7 +1,9 @@
 <md-content>
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h1>Djello</h1>
+      <md-button ui-sref='boards.index'>
+        <h1>Djello</h1>
+      </md-button>
       <md-menu>
         <md-button aria-label="Open phone interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
           <span md-menu-origin>Boards</span>
@@ -15,7 +17,7 @@
           <md-menu-divider></md-menu-divider>
           <md-menu-item ng-repeat="board in boards">
               <md-button ui-sref="boards.show({id: board.id})">
-                  {{board.name}}
+                {{board.name}}
               </md-button>
           </md-menu-item>
         </md-menu-content>

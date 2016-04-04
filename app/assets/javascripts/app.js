@@ -27,7 +27,7 @@ angular.module('djello', ['ngMaterial', 'Devise', 'ui.router', 'restangular'])
         controller: 'BoardsIndexCtrl'
       })
       .state('boards.show', {
-        url: "boards/:id",
+        url: "/:id",
         templateUrl: "/templates/boards/show.html",
         controller: 'BoardsShowCtrl',
         resolve: {

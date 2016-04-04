@@ -28,7 +28,7 @@ angular.module('djello')
                     .ok('Okay!')
                     .cancel('Cancel');
             $mdDialog.show(confirm).then(function(result) {
-              $scope.boards.create({name: result, user_id: $scope.currentUser.id })
+              $scope.boards.create({name: result, user_id: $scope.currentUser.id });
             }, function() {
             });
         };

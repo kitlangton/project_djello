@@ -32,6 +32,15 @@ class BoardsController < ApplicationController
     end
   end
 
+  def destroy
+    @board = Board.find(params[:id])
+    if @board.destroy
+      render json: @board
+    else
+      render json: { errors: @board.errors.full_messages }, status: 422
+    end
+  end
+
   private
 
   def board_params
