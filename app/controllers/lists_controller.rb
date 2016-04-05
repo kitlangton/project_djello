@@ -16,6 +16,24 @@ class ListsController < ApplicationController
     end
   end
 
+  def update
+    @list = List.find(params[:id])
+    new_params = list_params
+    new_position = new_params.delete(:position)
+
+    if @list.update(new_params)
+      @list.insert_at(new_position)
+      render json: @list
+    else
+      render json: @list
+    end
+  end
+
+  def destroy
+    List.find(params[:id]).destroy
+    render json: true
+  end
+
   private
 
   def set_board
@@ -23,6 +41,6 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:name)
+    params.require(:list).permit(:name, :position)
   end
 end

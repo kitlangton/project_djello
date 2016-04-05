@@ -1,4 +1,4 @@
-angular.module('djello', ['ngMaterial', 'Devise', 'ui.router', 'restangular'])
+angular.module('djello', ['ngMaterial', 'Devise', 'ui.router', 'restangular', 'dndLists'])
 
 .config(['RestangularProvider', function(RestangularProvider){
   RestangularProvider.setBaseUrl('/api/v1');
@@ -36,4 +36,8 @@ angular.module('djello', ['ngMaterial', 'Devise', 'ui.router', 'restangular'])
           }]
         }
       });
-  }]);
+  }])
+
+.factory('_', ['$window', function($window) {
+  return $window._;
+}]);

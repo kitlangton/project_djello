@@ -15,6 +15,19 @@ class CardsController < ApplicationController
     end
   end
 
+  def update
+    @card = Card.find(params[:id])
+    new_params = card_params
+    new_position = new_params.delete(:position)
+
+    if @card.update(new_params)
+      @card.insert_at(new_position)
+      render json: @card
+    else
+      render json: @card
+    end
+  end
+
   private
 
   def set_list
@@ -22,6 +35,6 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:body)
+    params.require(:card).permit(:body, :list_id, :position)
   end
 end

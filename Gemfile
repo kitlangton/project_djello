@@ -10,6 +10,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'angularjs-rails'
 gem 'angular_rails_csrf'
+gem 'acts_as_list'
 
 source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"

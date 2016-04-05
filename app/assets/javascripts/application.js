@@ -18,4 +18,5 @@
 //= require angular-ui-router.min
 //= require angular-devise
 //= require restangular.min
+//= require angular-drag-and-drop-lists.min
 //= require_tree .

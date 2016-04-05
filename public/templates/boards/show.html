@@ -1,42 +1,57 @@
 <md-content layout-padding class="board-body">
   <div class="board-name-header">
     {{ board.name }}
-    <md-button class='md-warn' ng-click="removeBoard(board)" ui-sref='boards.index'>Remove Board</md-button>
+    <!-- <md&#45;button class='md&#45;warn' ng&#45;click="removeBoard(board)" ui&#45;sref='boards.index'>Remove Board</md&#45;button> -->
   </div>
 
-  <div class="lists">
-<div class="list" ng-repeat="list in lists">
+  <div class="lists" dnd-drop="moveList(item, index)" dnd-list="" dnd-horizontal-list="true" dnd-allowed-types="['list-type']">
+    <div class="list" ng-repeat="list in lists" dnd-draggable="list" dnd-type="'list-type'" dnd-moved="lists.splice($index,1)">
 
-  <div class="list-name">
-    {{ list.name }}
-  </div>
+      <md-menu>
+      <md-button class="list-controls md-icon-button" ng-click="$mdOpenMenu($event)"> ... </md-button>
 
-  <div class="card" ng-repeat="card in list.cards">{{card.body}}</div>
+      <md-menu-content width="4">
+      <md-menu-item>
+      <md-button ng-click="deleteList(list)">
+      Delete List
+      </md-button>
+      </md-menu-item>
+      </md-menu-content>
+      </md-menu>
 
-  <div class="new-card" ng-show="list.addingCard">
-    <div class="card editable">
-      <textarea autofocus=true ng-model='list.newCardText'></textarea>
+      <div class="list-name">
+        {{ list.name }}
+      </div>
+
+      <div class="cards" dnd-list='list.cards' dnd-drop="moveCard(item, index, list)" dnd-allowed-types="['card-type']">
+
+        <div class="card" ng-repeat="card in list.cards" dnd-draggable='card' ng-click="displayCard($event, card)" dnd-type="'card-type'">{{card.body}}</div>
+      </div>
+
+      <div class="new-card" ng-show="list.addingCard">
+        <div class="card editable">
+          <textarea autofocus=true ng-model='list.newCardText'></textarea>
+        </div>
+        <div class="card-controls">
+          <button class="special-button" ng-click="createCard(list, list.newCardText)">Add</button>
+        </div>
+      </div>
+
+      <div class="add-card" ng-hide="list.addingCard" ng-mousedown="list.addingCard = !list.addingCard">
+        Add a card...
+      </div>
+
     </div>
-    <div class="card-controls">
-      <button class="special-button" ng-click="createCard(list, list.newCardText)">Add</button>
+
+    <div class="add-list" ng-mousedown="toggled = !toggled" ng-class="toggled && 'toggled'">
+      <span class="add-list-text">
+        <input type="text" name="name" ng-mousedown="nothing($event)" placeholder="Add a List..." ng-model="newListName">
+      </span>
+      <div class="controls">
+        <button class="special-button" ng-click="createList()">Save</button>
+      </div>
     </div>
+
   </div>
-
-  <div class="add-card" ng-hide="list.addingCard" ng-mousedown="list.addingCard = !list.addingCard">
-    Add a card...
-  </div>
-
-</div>
-
-<div class="add-list" ng-mousedown="toggled = !toggled" ng-class="toggled && 'toggled'">
-  <span class="add-list-text">
-      <input type="text" name="name" ng-mousedown="nothing($event)" placeholder="Add a List..." ng-model="newListName">
-  </span>
-  <div class="controls">
-    <button class="special-button" ng-click="createList()">Save</button>
-  </div>
-</div>
-
-</div>
 
 </md-content>
