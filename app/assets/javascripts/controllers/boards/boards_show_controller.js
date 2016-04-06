@@ -68,7 +68,7 @@ angular.module('djello')
   $scope.displayCard = function($event, card) {
     $mdDialog.show({
       controller: 'CardCtrl',
-      template: "<md-dialog><div class='card-modal'><h2>{{card.body}}</h2></div></md-dialog>",
+      template: "<md-dialog><div class='card-modal'><h2 editable-text='card.body' onaftersave='updateCard()'>{{card.body}}</h2></div></md-dialog>",
       parent: angular.element(document.body),
       targetEvent: $event,
       locals: {

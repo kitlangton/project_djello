@@ -1,4 +1,4 @@
-angular.module('djello', ['ngMaterial', 'Devise', 'ui.router', 'restangular', 'dndLists'])
+angular.module('djello', ['ngMaterial', 'Devise', 'ui.router', 'restangular', 'dndLists', 'xeditable'])
 
 .config(['RestangularProvider', function(RestangularProvider){
   RestangularProvider.setBaseUrl('/api/v1');

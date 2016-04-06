@@ -19,4 +19,5 @@
 //= require angular-devise
 //= require restangular.min
 //= require angular-drag-and-drop-lists.min
+//= require xeditable.min
 //= require_tree .

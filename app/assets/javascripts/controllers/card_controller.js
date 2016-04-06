@@ -3,5 +3,8 @@ angular.module('djello')
       $scope.card = card;
       $scope.cancel = function() {
         $mdDialog.cancel();
-      }
+      };
+      $scope.updateCard = function() {
+        $scope.card.save();
+      };
     }]);
